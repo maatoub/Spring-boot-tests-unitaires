@@ -42,6 +42,8 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
     public UtilisateurDTO updateUser(UtilisateurDTO dto) {
         if (dto == null)
             throw new ValidationException("Utilisateur is null");
+        repository.findById(dto.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Utilisateur non trouvé"));
         Utilisateur objectSaved = repository.save(mapper.toUtilisateur(dto));
         return mapper.toUtilisateurDTO(objectSaved);
     }
