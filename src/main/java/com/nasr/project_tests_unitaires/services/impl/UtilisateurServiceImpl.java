@@ -28,8 +28,6 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 
     @Override
     public UtilisateurDTO addNewUser(UtilisateurDTO dto) {
-        if (dto == null)
-            throw new ValidationException("Utilisateur is null");
         boolean emailPresent = repository.findByEmail(dto.getEmail()).isPresent();
         if (emailPresent) {
             throw new ValidationException("Email already present");
@@ -40,8 +38,6 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 
     @Override
     public UtilisateurDTO updateUser(UtilisateurDTO dto) {
-        if (dto == null)
-            throw new ValidationException("Utilisateur is null");
         repository.findById(dto.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Utilisateur non trouvé"));
         Utilisateur objectSaved = repository.save(mapper.toUtilisateur(dto));
