@@ -22,10 +22,8 @@ public class ProjectTestsUnitairesApplication {
 		return args -> {
 			repo.save(Utilisateur.builder()
 					.email("nasr@email.com").nom("Nasser").build());
-
 			repo.save(Utilisateur.builder()
 					.email("yassine@email.com").nom("Yassine").build());
-
 			repo.save(Utilisateur.builder()
 					.email("ikram@email.com").nom("Ikram").build());
 		};
